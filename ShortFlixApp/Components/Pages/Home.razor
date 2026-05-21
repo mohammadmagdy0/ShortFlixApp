@@ -1,0 +1,189 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+@page "/"
+@rendermode InteractiveServer
+
+<div class="mobile-container">
+    <!-- هيدر التطبيق -->
+    <div class="header">
+        <span class="logo">🎬 SHORTFLIX</span>
+        <span class="vip-badge">PREMIUM</span>
+    </div>
+
+    <!-- كارت المسلسل الأكثر مشاهدة -->
+    <div class="trending-card">
+        <div class="poster-placeholder"></div>
+        <div class="card-details">
+            <h3>The Hidden Billionaire Heir</h3>
+            <p class="meta">Season 1 • 30 Episodes • Drama</p>
+            <button class="watch-btn" @onclick="WatchFreeEpisode">▶ Watch Episode 1 (Free)</button>
+        </div>
+    </div>
+
+    <!-- قسم خطط الربح والمكسب التجاري -->
+    <h4 class="section-title">Unlock More Episodes</h4>
+    
+    <div class="monetization-grid">
+        <!-- كارت شحن العملات الرقمية -->
+        <div class="promo-card">
+            <h5>🪙 200 Coins</h5>
+            <p>Unlock 3 Episodes</p>
+            <button class="buy-btn" @onclick="BuyCoins">$2.99</button>
+        </div>
+
+        <!-- كارت الاشتراك الذهبي -->
+        <div class="promo-card vip">
+            <h5 style="color: #FFD700;">👑 VIP Member</h5>
+            <p>All Shows Unlocked</p>
+            <button class="buy-btn vip-btn" @onclick="SubscribeVIP">$7.99/mo</button>
+        </div>
+    </div>
+
+    <!-- المحفظة الافتراضية لعرض تحديث البيانات للمستخدم -->
+    <div class="wallet-status">
+        <p>Your Balance: <strong>@currentCoins Coins</strong> | Status: <strong>@(isVipStatus ? "VIP Account" : "Free Tier")</strong></p>
+    </div>
+</div>
+
+@code {
+    private int currentCoins = 0;
+    private bool isVipStatus = false;
+
+    private void WatchFreeEpisode()
+    {
+        // محاكاة تشغيل الفيديو
+        currentCoins += 0; 
+    }
+
+    private void BuyCoins()
+    {
+        currentCoins += 200;
+    }
+
+    private void SubscribeVIP()
+    {
+        isVipStatus = true;
+    }
+}
+
+<style>
+    /* تصميم مخصص ليجعل الصفحة تظهر كشاشة هاتف محمول مريحة للعين */
+    .mobile-container {
+        background-color: #0B0B16;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 450px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #FF2A54;
+    }
+    .vip-badge {
+        background-color: #FFD700;
+        color: #0B0B16;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 3px 8px;
+        border-radius: 4px;
+    }
+    .trending-card {
+        background-color: #16162A;
+        border-radius: 15px;
+        border: 1px solid #252542;
+        overflow: hidden;
+        margin-bottom: 25px;
+    }
+    .poster-placeholder {
+        background-color: #FF2A54;
+        height: 160px;
+    }
+    .card-details {
+        padding: 15px;
+    }
+    .card-details h3 {
+        margin: 0 0 5px 0;
+        font-size: 18px;
+    }
+    .meta {
+        color: #8A8AAB;
+        font-size: 13px;
+        margin: 0 0 15px 0;
+    }
+    .watch-btn {
+        background-color: #FF2A54;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 10px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .monetization-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    .promo-card {
+        background-color: #16162A;
+        border: 1px solid #252542;
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+    }
+    .promo-card.vip {
+        border-color: #FFD700;
+    }
+    .promo-card h5 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+    }
+    .promo-card p {
+        color: #8A8AAB;
+        font-size: 12px;
+        margin: 0 0 12px 0;
+    }
+    .buy-btn {
+        background-color: #252542;
+        color: #FF2A54;
+        border: none;
+        padding: 6px 15px;
+        font-weight: bold;
+        border-radius: 6px;
+        width: 100%;
+        cursor: pointer;
+    }
+    .vip-btn {
+        background-color: #FFD700;
+        color: #0B0B16;
+    }
+    .wallet-status {
+        background-color: #16162A;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 13px;
+        border: 1px dashed #252542;
+    }
+</style>
